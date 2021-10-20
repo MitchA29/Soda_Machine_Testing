@@ -53,5 +53,34 @@ class TestAddCoinsToWallet(unittest.TestCase):
         after_count = len(self.customer.wallet.money)
         self.assertEqual(before_count,after_count)
 
+class TestAddCanToBackpack(unittest.TestCase):
+    """Tests Customer's add_can_to_backpack method"""
+    
+    def setUp(self):
+        self.customer = Customer()
+
+    def test_customers_backpacks_purchased_cans_list_goes_up_cola(self):
+        """Tests if the Customers backpacks purchased cans list actually goes up"""
+        before_count = len(self.customer.backpack.purchased_cans)
+        self.customer.backpack.purchased_cans.append("cola")
+        after_count = len(self.customer.backpack.purchased_cans)
+        self.assertEqual(after_count,before_count + 1)
+
+    def test_customers_backpacks_purchased_cans_list_goes_up_orange_soda(self):
+        """Tests if the Customers backpacks purchased cans list actually goes up"""
+        before_count = len(self.customer.backpack.purchased_cans)
+        self.customer.backpack.purchased_cans.append("Orange Soda")
+        after_count = len(self.customer.backpack.purchased_cans)
+        self.assertEqual(after_count,before_count + 1)
+
+    def test_customers_backpacks_purchased_cans_list_goes_up_root_beer(self):
+        """Tests if the Customers backpacks purchased cans list actually goes up"""
+        before_count = len(self.customer.backpack.purchased_cans)
+        self.customer.backpack.purchased_cans.append("Root Beer")
+        after_count = len(self.customer.backpack.purchased_cans)
+        self.assertEqual(after_count,before_count + 1)
+
+
+
 if __name__ == "__main__":
     unittest.main()
