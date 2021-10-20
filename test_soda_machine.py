@@ -165,3 +165,27 @@ class TestReturnInventory(unittest.TestCase):
         """Tests if the length of the inventory list goes up"""
         can = self.soda_machine.return_inventory("Cola")
         self.assertEqual(31,len(self.soda_machine.inventory))
+
+import coins
+test_coin_list = []
+for index in range(1):
+    test_coin_list.append(coins.Quarter())
+for index in range(1):
+    test_coin_list.append(coins.Dime())
+for index in range(1):
+    test_coin_list.append(coins.Nickel())
+for index in range(1):
+    test_coin_list.append(coins.Penny())
+
+class TestDepositIntoRegister(unittest.TestCase):
+    """ Test of the deposit into register method of soda machine"""
+    def setUp(self):
+        self.soda_machine = SodaMachine()
+
+    def test_deposit_coins_into_register(self):
+        self.soda_machine.deposit_coins_into_register(test_coin_list)
+        print(len(self.soda_machine.register))
+
+
+if __name__ == "__main__":
+    unittest.main()
