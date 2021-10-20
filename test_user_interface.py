@@ -45,8 +45,6 @@ class TestTryParseInt(unittest.TestCase):
 
 import cans
 
-
-
 class TestGetUniqueCanNames(unittest.TestCase):
     """Test the get_unique_can_names_method of the user_interface"""
     
@@ -100,11 +98,39 @@ class TestDisplayPaymentValue(unittest.TestCase):
         """test to show no value when there is no value given to display_payment_value method in user_interface"""
         test_value = user_interface.display_payment_value(self.empty_inventory)
         print(test_value)
-        
 
+class TestValidateCoinSelection(unittest.TestCase):
+    """Test of validate_coin_selection method in user_interface"""
 
+    def test_validate_coin_selection1(self):
+        """Test that validate coin selection 1 is valid"""
+        validate_coin_selection = user_interface.validate_coin_selection(1)
+        self.assertEqual(validate_coin_selection,(True,"Quarter")) 
 
+    def test_validate_coin_selection2(self):
+        """Test that validate coin selection 2 is valid"""
+        validate_coin_selection = user_interface.validate_coin_selection(2)
+        self.assertEqual(validate_coin_selection,(True,"Dime"))  
 
+    def test_validate_coin_selection1(self):
+        """Test that validate coin selection 3 is valid"""
+        validate_coin_selection = user_interface.validate_coin_selection(3)
+        self.assertEqual(validate_coin_selection,(True,"Nickel")) 
+
+    def test_validate_coin_selection1(self):
+        """Test that validate coin selection 4 is valid"""
+        validate_coin_selection = user_interface.validate_coin_selection(4)
+        self.assertEqual(validate_coin_selection,(True,"Penny")) 
+
+    def test_validate_coin_selection1(self):
+        """Test that validate coin selection 5 is valid"""
+        validate_coin_selection = user_interface.validate_coin_selection(5)
+        self.assertEqual(validate_coin_selection,(True,"Done")) 
+    
+    def test_validate_coin_selection1(self):
+        """Test that validate coin selection will return false if option selected is not on the list"""
+        validate_coin_selection = user_interface.validate_coin_selection(6)
+        self.assertEqual(validate_coin_selection,(False,None)) 
 
 if __name__ == '__main__':
     unittest.main()
