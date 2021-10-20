@@ -155,5 +155,16 @@ class TestGetInventorySoda(unittest.TestCase):
         soda = self.soda_machine.get_inventory_soda("Mountain Dew")
         self.assertEqual(None,soda)
 
+class TestReturnInventory(unittest.TestCase):
+    """Tests Soda Machine's return_inventory method"""
+
+    def setUp(self) -> None:
+        self.soda_machine = SodaMachine()
+
+    def test_length_of_inventory_goes_up(self):
+        """Tests if the length of the inventory list goes up"""
+        can = self.soda_machine.return_inventory("Cola")
+        self.assertEqual(31,len(self.soda_machine.inventory))
+
 if __name__ == "__main__":
     unittest.main()
