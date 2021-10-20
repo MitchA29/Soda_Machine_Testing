@@ -1,4 +1,5 @@
 import unittest
+from cans import Can, Cola, OrangeSoda, RootBeer
 from coins import Dime, Nickel, Penny, Quarter
 from soda_machine import SodaMachine
 
@@ -127,6 +128,32 @@ class TestCalculateCoinValue(unittest.TestCase):
         coin_list = []
         coins = self.soda_machine.calculate_coin_value(coin_list)
         self.assertEqual(0,coins)
+
+class TestGetInventorySoda(unittest.TestCase):
+    """Tests Soda Machine's get_inventory_soda method"""
+
+    def setUp(self):
+        self. soda_machine = SodaMachine()
+
+    def test_if_cola_in_inventory(self):
+        """Tests if cola is in inventory"""
+        soda = self.soda_machine.get_inventory_soda("Cola")
+        self.assertEqual("Cola",soda.name)
+
+    def test_if_orange_soda_in_inventory(self):
+        """Tests if Orange Soda is in inventory"""
+        soda = self.soda_machine.get_inventory_soda("Orange Soda")
+        self.assertEqual("Orange Soda",soda.name)
+
+    def test_if_root_beer_in_inventory(self):
+        """Tests if Root Beer is in inventory"""
+        soda = self.soda_machine.get_inventory_soda("Root Beer")
+        self.assertEqual("Root Beer",soda.name)
+
+    def test_if_not_in_inventory(self):
+        """Tests a soda not in inventory if it returns none"""
+        soda = self.soda_machine.get_inventory_soda("Mountain Dew")
+        self.assertEqual(None,soda)
 
 if __name__ == "__main__":
     unittest.main()
