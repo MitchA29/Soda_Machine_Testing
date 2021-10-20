@@ -1,4 +1,5 @@
 import unittest
+from coins import Dime, Nickel, Penny, Quarter
 from soda_machine import SodaMachine
 
 class TestFillRegister(unittest.TestCase):
@@ -84,7 +85,7 @@ class TestRegisterHasCoin(unittest.TestCase):
         coin = self.soda_machine.register_has_coin("Loonie")
         self.assertFalse(coin)
 
-class TestDetermineChangevalue(unittest.TestCase):
+class TestDetermineChangeValue(unittest.TestCase):
     """Tests Soda Machine's determine_change_value method"""
 
     def setUp(self):
@@ -104,6 +105,28 @@ class TestDetermineChangevalue(unittest.TestCase):
         """Tests if change is correct with prices the same"""
         change = self.soda_machine.determine_change_value(1.00,1.00)
         self.assertEqual(0,change)
+
+class TestCalculateCoinValue(unittest.TestCase):
+    """Tests Soda Machine's calculate_coin_value method"""
+
+    def setUp(self):
+        self.soda_machine = SodaMachine()
+
+    def test_coins_values(self):
+        """Tests if the added coin values are correct"""
+        coin_list = []
+        coin_list.append(Quarter())
+        coin_list.append(Dime())
+        coin_list.append(Nickel())
+        coin_list.append(Penny())
+        coins = self.soda_machine.calculate_coin_value(coin_list)
+        self.assertEqual(.41,coins)
+
+    def test_empty_values(self):
+        """Tests if an empty value equals 0"""
+        coin_list = []
+        coins = self.soda_machine.calculate_coin_value(coin_list)
+        self.assertEqual(0,coins)
 
 if __name__ == "__main__":
     unittest.main()
