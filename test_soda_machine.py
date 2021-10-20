@@ -165,6 +165,3 @@ class TestReturnInventory(unittest.TestCase):
         """Tests if the length of the inventory list goes up"""
         can = self.soda_machine.return_inventory("Cola")
         self.assertEqual(31,len(self.soda_machine.inventory))
-
-if __name__ == "__main__":
-    unittest.main()
