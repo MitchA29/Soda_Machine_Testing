@@ -1,4 +1,6 @@
 import unittest
+from unittest.case import TestCase
+from coins import Coin
 from soda_machine import SodaMachine
 
 class TestFillRegister(unittest.TestCase):
@@ -104,6 +106,86 @@ class TestDetermineChangevalue(unittest.TestCase):
         """Tests if change is correct with prices the same"""
         change = self.soda_machine.determine_change_value(1.00,1.00)
         self.assertEqual(0,change)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import coins
+test_coin_list = []
+for index in range(1):
+    test_coin_list.append(coins.Quarter())
+for index in range(1):
+    test_coin_list.append(coins.Dime())
+for index in range(1):
+    test_coin_list.append(coins.Nickel())
+for index in range(1):
+    test_coin_list.append(coins.Penny())
+
+class TestDepositIntoRegister(unittest.TestCase):
+    """ Test of the deposit into register method of soda machine"""
+    def setUp(self):
+        self.soda_machine = SodaMachine()
+
+    def test_deposit_coins_into_register(self):
+        self.soda_machine.deposit_coins_into_register(test_coin_list)
+        print(len(self.soda_machine.register))
+
 
 if __name__ == "__main__":
     unittest.main()
