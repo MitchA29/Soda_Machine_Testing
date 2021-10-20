@@ -1,4 +1,6 @@
+from logging import info
 import unittest
+from unittest.case import TestCase
 import user_interface
 
 class TestValidateMainMenu(unittest.TestCase):
@@ -28,6 +30,40 @@ class TestValidateMainMenu(unittest.TestCase):
         """Test that main menu selection other than provided returns False,None"""
         main_menu_selection = user_interface.validate_main_menu(5)
         self.assertEqual(main_menu_selection,(False,None))
+
+class TestTryParseInt(unittest.TestCase):
+    """Tests the try_parse_int method inside of the user_interface"""
+
+    def test_try_parse_int_is_int(self):
+        """Tests to ensure the method will return correctly with int 10 passing in"""
+        try_parse_value = user_interface.try_parse_int(10)
+        self.assertEqual(try_parse_value,10)
+
+    def test_try_parse_int_isnot_int(self):
+        """Test to ensure method will not return value if not an int"""
+        try_parse_value = user_interface.try_parse_int("hello")
+        self.assertEqual(try_parse_value,0)
+
+import cans
+
+
+
+class TestGetUniqueCanNames(unittest.TestCase):
+    """Test the get_unique_can_names_method of the user_interface"""
+    
+    def test_create_inventory(self):
+        inventory_for_test = self
+        inventory_for_test = []
+        inventory_for_test.append(cans.Cola())
+        inventory_for_test.append(cans.Cola())
+        inventory_for_test.append(cans.RootBeer())
+        inventory_for_test.append(cans.RootBeer())
+        inventory_for_test.append(cans.OrangeSoda())
+        inventory_for_test.append(cans.OrangeSoda())
+        return (inventory_for_test)
+
+    print(test_create_inventory)
+
 
 
 
