@@ -57,19 +57,19 @@ class TestGetUniqueCanNames(unittest.TestCase):
         inventory.append(cans.OrangeSoda())
     for index in range(2):
         inventory.append(cans.RootBeer())
-    print(inventory)
     
     empty_inventory = []
     
     def test_get_unique_can_names_quantity(self):
         """test to make sure regardless of how many cans added, names is still only 3"""
         test_inventory = user_interface.get_unique_can_names(self.inventory)
-        print(len(test_inventory))
+        self.assertEqual(len(test_inventory),3)
     
     def test_get_unique_can_names_empty(self):
         """ test to make sure if nothing is passed in then nothing value is returned"""
         test_inventory = user_interface.get_unique_can_names(self.empty_inventory)
-        print(len(test_inventory))
+        self.assertEqual(len(test_inventory),0)
+
 import coins
 
 class TestDisplayPaymentValue(unittest.TestCase):
@@ -92,12 +92,12 @@ class TestDisplayPaymentValue(unittest.TestCase):
     def test_display_payment_value(self):
         """test to ensure return value is accurate of display_payment_value method in user_interface"""
         test_value = user_interface.display_payment_value(self.inventory)
-        print(test_value)
+        self.assertEqual(test_value,.41)
     
     def test_display_payment_value_none(self):
         """test to show no value when there is no value given to display_payment_value method in user_interface"""
         test_value = user_interface.display_payment_value(self.empty_inventory)
-        print(test_value)
+        self.assertEqual(test_value,0)
 
 class TestValidateCoinSelection(unittest.TestCase):
     """Test of validate_coin_selection method in user_interface"""
@@ -112,22 +112,22 @@ class TestValidateCoinSelection(unittest.TestCase):
         validate_coin_selection = user_interface.validate_coin_selection(2)
         self.assertEqual(validate_coin_selection,(True,"Dime"))  
 
-    def test_validate_coin_selection1(self):
+    def test_validate_coin_selection3(self):
         """Test that validate coin selection 3 is valid"""
         validate_coin_selection = user_interface.validate_coin_selection(3)
         self.assertEqual(validate_coin_selection,(True,"Nickel")) 
 
-    def test_validate_coin_selection1(self):
+    def test_validate_coin_selection4(self):
         """Test that validate coin selection 4 is valid"""
         validate_coin_selection = user_interface.validate_coin_selection(4)
         self.assertEqual(validate_coin_selection,(True,"Penny")) 
 
-    def test_validate_coin_selection1(self):
+    def test_validate_coin_selection5(self):
         """Test that validate coin selection 5 is valid"""
         validate_coin_selection = user_interface.validate_coin_selection(5)
         self.assertEqual(validate_coin_selection,(True,"Done")) 
     
-    def test_validate_coin_selection1(self):
+    def test_validate_coin_selection6(self):
         """Test that validate coin selection will return false if option selected is not on the list"""
         validate_coin_selection = user_interface.validate_coin_selection(6)
         self.assertEqual(validate_coin_selection,(False,None)) 
