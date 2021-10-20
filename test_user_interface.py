@@ -1,4 +1,5 @@
 import unittest
+from unittest.case import TestCase
 import user_interface
 
 class TestValidateMainMenu(unittest.TestCase):
@@ -49,7 +50,7 @@ import cans
 class TestGetUniqueCanNames(unittest.TestCase):
     """Test the get_unique_can_names_method of the user_interface"""
     
-    """Inventory variable for test_creat_inventory test method"""
+    """Inventory variable for test_get_unique_can_name test methods"""
 
     inventory = []
     for index in range(2):
@@ -71,7 +72,35 @@ class TestGetUniqueCanNames(unittest.TestCase):
         """ test to make sure if nothing is passed in then nothing value is returned"""
         test_inventory = user_interface.get_unique_can_names(self.empty_inventory)
         print(len(test_inventory))
+import coins
 
+class TestDisplayPaymentValue(unittest.TestCase):
+    """Test of the display_payment_value of the user_interface"""
+
+    """Inventory variable for display_payment_value test methods"""
+
+    inventory = []
+    for index in range(1):
+        inventory.append(coins.Quarter())
+    for index in range(1):
+        inventory.append(coins.Dime())
+    for index in range(1):
+        inventory.append(coins.Nickel())
+    for index in range(1):
+        inventory.append(coins.Penny())
+
+    empty_inventory = []
+
+    def test_display_payment_value(self):
+        """test to ensure return value is accurate of display_payment_value method in user_interface"""
+        test_value = user_interface.display_payment_value(self.inventory)
+        print(test_value)
+    
+    def test_display_payment_value_none(self):
+        """test to show no value when there is no value given to display_payment_value method in user_interface"""
+        test_value = user_interface.display_payment_value(self.empty_inventory)
+        print(test_value)
+        
 
 
 
