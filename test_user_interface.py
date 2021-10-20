@@ -1,6 +1,4 @@
-from logging import info
 import unittest
-from unittest.case import TestCase
 import user_interface
 
 class TestValidateMainMenu(unittest.TestCase):
@@ -51,19 +49,28 @@ import cans
 class TestGetUniqueCanNames(unittest.TestCase):
     """Test the get_unique_can_names_method of the user_interface"""
     
-    def test_create_inventory(self):
-        inventory_for_test = self
-        inventory_for_test = []
-        inventory_for_test.append(cans.Cola())
-        inventory_for_test.append(cans.Cola())
-        inventory_for_test.append(cans.RootBeer())
-        inventory_for_test.append(cans.RootBeer())
-        inventory_for_test.append(cans.OrangeSoda())
-        inventory_for_test.append(cans.OrangeSoda())
-        return (inventory_for_test)
+    """Inventory variable for test_creat_inventory test method"""
 
-    print(test_create_inventory)
-
+    inventory = []
+    for index in range(2):
+        inventory.append(cans.Cola())
+    for index in range(2):
+        inventory.append(cans.OrangeSoda())
+    for index in range(2):
+        inventory.append(cans.RootBeer())
+    print(inventory)
+    
+    empty_inventory = []
+    
+    def test_get_unique_can_names_quantity(self):
+        """test to make sure regardless of how many cans added, names is still only 3"""
+        test_inventory = user_interface.get_unique_can_names(self.inventory)
+        print(len(test_inventory))
+    
+    def test_get_unique_can_names_empty(self):
+        """ test to make sure if nothing is passed in then nothing value is returned"""
+        test_inventory = user_interface.get_unique_can_names(self.empty_inventory)
+        print(len(test_inventory))
 
 
 
