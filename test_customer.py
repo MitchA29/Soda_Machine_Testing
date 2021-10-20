@@ -1,7 +1,9 @@
 import unittest
 from customer import Customer
 
-class TestgetWalletcoin(unittest.TestCase):
+class TestGetWalletCoin(unittest.TestCase):
+    """Tests for Customer's get_wallet_coin method"""
+
     def setUp(self):
         self.customer = Customer()
 
@@ -29,6 +31,27 @@ class TestgetWalletcoin(unittest.TestCase):
         """Testing that passing in a non-valid string returns None"""
         returned_coin = self.customer.get_wallet_coin("Loonie")
         self.assertEqual(None,returned_coin)
+
+class TestAddCoinsToWallet(unittest.TestCase):
+    """Tests Customer's add_coins_to_wallet method"""
+
+    def setUp(self):
+        self.customer = Customer()
+
+    def test_length_of_customers_wallet_money_list_goes_up(self):
+        """Testing that the length of the customer's wallet money list goes up"""
+        before_count = len(self.customer.wallet.money)
+        self.customer.add_coins_to_wallet(["quarter","Nickel","Dime"])
+        after_count = len(self.customer.wallet.money)
+        self.assertEqual(after_count,before_count + 3)
+
+    def test_length_of_customers_wallet_money_list_stays_same(self):
+        """Testing that the length of the customer's wallet money list stays
+        the same when an empty list passes through it"""
+        before_count = len(self.customer.wallet.money)
+        self.customer.add_coins_to_wallet([])
+        after_count = len(self.customer.wallet.money)
+        self.assertEqual(before_count,after_count)
 
 if __name__ == "__main__":
     unittest.main()
